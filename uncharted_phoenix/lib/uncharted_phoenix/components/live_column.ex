@@ -5,6 +5,9 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
 
   use Phoenix.LiveComponent
 
+  @default_width 700
+  @default_height 400
+
   def update(assigns, socket) do
     y_axis = assigns.chart.dataset.axes.magnitude_axis
     # Hardcode the number of steps to take as 5 for now
@@ -18,7 +21,9 @@ defmodule UnchartedPhoenix.LiveColumnComponent do
         columns: Uncharted.ColumnChart.columns(assigns.chart),
         grid_lines: grid_lines,
         grid_line_offsetter: grid_line_offsetter,
-        axis: y_axis
+        axis: y_axis,
+        width: assigns.chart.width || @default_width,
+        height: assigns.chart.height || @default_height
       })
 
     {:ok, socket}
