@@ -5,6 +5,9 @@ defmodule UnchartedPhoenix.LiveLineComponent do
 
   use Phoenix.LiveComponent
 
+  @default_width 700
+  @default_height 400
+
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.x
     y_axis = assigns.chart.dataset.axes.y
@@ -25,7 +28,9 @@ defmodule UnchartedPhoenix.LiveLineComponent do
         x_grid_line_offsetter: x_grid_line_offsetter,
         x_axis: x_axis,
         y_grid_lines: y_grid_lines,
-        y_grid_line_offsetter: y_grid_line_offsetter
+        y_grid_line_offsetter: y_grid_line_offsetter,
+        width: assigns.chart.width || @default_width,
+        height: assigns.chart.height || @default_height
       })
 
     {:ok, socket}
