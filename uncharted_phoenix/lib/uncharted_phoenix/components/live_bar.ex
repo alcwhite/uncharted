@@ -5,6 +5,9 @@ defmodule UnchartedPhoenix.LiveBarComponent do
 
   use Phoenix.LiveComponent
 
+  @default_width 600
+  @default_height 400
+
   def update(assigns, socket) do
     x_axis = assigns.chart.dataset.axes.magnitude_axis
     # Hardcode the number of steps to take as 10 for now
@@ -21,6 +24,8 @@ defmodule UnchartedPhoenix.LiveBarComponent do
       |> assign(:bars, Uncharted.BarChart.bars(assigns.chart))
       |> assign(:grid_lines, grid_lines)
       |> assign(:offsetter, grid_line_offsetter)
+      |> assign(:width, assigns.chart.width || @default_width)
+      |> assign(:height, assigns.chart.height || @default_height)
 
     {:ok, socket}
   end
